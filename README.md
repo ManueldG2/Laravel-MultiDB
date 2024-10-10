@@ -41,3 +41,13 @@ ora quando devo lavorare sui dati
  dump($user->setConnection('mysql')->select('*')->get()); //lavoro con il db secondario (sto cercando un modo per accedere ai metodi statici )
 
  dump(User::all()); //uso il db di default
+
+per le eventuali richieste ad un server che richiedo dei dati in modo sporadico credo sarebbe meglio usare delle API 
+
+    $api=Http::get('https://api.chucknorris.io/jokes/random'); // richiesta API
+
+    $api->json(); // prende i dati json
+
+    $value = $api['value']; // recupero dati con chiave value 
+
+    uso di queue o un'altro sistema per effettuare una chiamata all'api ogni x minuti

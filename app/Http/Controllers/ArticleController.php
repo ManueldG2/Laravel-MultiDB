@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\CallApi;
+use App\Models\Values;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ArticleController extends Controller
 {
@@ -12,21 +15,28 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        /*
+
         $article = new Article();
 
-        $article->name = "test";
-        $article->price = 0.5;
+        /*$article->name = "tec";
+        $article->price = 0.9;
 
         $article->save();*/
 
         $article = new Article();
 
 
-
         $art = $article->allI();
 
-        return view('welcome',compact('art'));
+        $values = new Values();
+
+        $val = $values->setConnection('mysql')->allI();
+
+        dump($val);
+
+        CallApi::dispatch();
+
+        return view('welcome',compact('art','val'));
     }
 
     /**
