@@ -15,3 +15,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/user/chart', [ArticleController::class,'showChart']);
+
+Route::resource('article', ArticleController::class);
+

@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\User;
 use App\Jobs\CallApi;
 use App\Models\Values;
 use App\Models\Article;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
+use function Laravel\Prompts\form;
 
 class ArticleController extends Controller
 {
@@ -15,14 +20,6 @@ class ArticleController extends Controller
      */
     public function index()
     {
-
-        $article = new Article();
-
-        /*$article->name = "tec";
-        $article->price = 0.9;
-
-        $article->save();*/
-
         $article = new Article();
 
 
@@ -44,7 +41,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+
+
+        return view('article.index');
     }
 
     /**
@@ -52,7 +51,29 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        /*
+          prodotti prelevati/acquistati tipo quantità ora (insererimento, uscita)
+
+            2 server in contemporanea e interroga un terzo db per altri dati espone servizi web come API usando Oauth2
+
+            dati statistici grafici chart.js andamento delle vendite e di tipo commerciale quanti prodotti nel mobiletto e quale è stato acquistato in che orario (data - giorno della settimana )
+         */
+        $article = new Article();
+
+        $article->name =$request->input('name');
+        $article->price = $request->input('price');
+
+        $article->insert = Carbon::now();
+        $article->taking = Carbon::now();
+        $article->amount = 0;
+
+        $article->position = $request->input('position');
+
+        $article->save();
+        dump($request);
+        //ritorna a index aggiungere campi
+
     }
 
     /**
@@ -85,5 +106,63 @@ class ArticleController extends Controller
     public function destroy(article $article)
     {
         //
+    }
+
+    public function showChart()
+    {
+
+        $start = Carbon::parse(User::min("created_at"));
+        $end = Carbon::now();
+        $period = CarbonPeriod::create($start, "1 month", $end);
+
+        $usersPerMonth = collect($period)->map(function ($date) {
+
+            $endDate = $date->copy()->endOfMonth();
+
+            return [
+                "count" => User::where("created_at", "<=", $endDate)->count(),
+                "month" => $endDate->format("Y-m-d")
+            ];
+        });
+
+        $data = $usersPerMonth->pluck("count")->toArray() ;
+        $labels = $usersPerMonth->pluck("month")->toArray();
+        dump($usersPerMonth);
+
+        $chart = Chartjs::build()
+            ->name("UserRegistrationsChart")
+            ->type("line")
+            ->size(["width" => 400, "height" => 200])
+            ->labels($labels)
+            ->datasets([
+                [
+                    "label" => "User Registrations",
+                    "backgroundColor" => "rgba(38, 185, 154, 0.31)",
+                    "borderColor" => "rgba(38, 185, 154, 0.7)",
+                    "data" => $data
+                ]
+            ])
+            ->options([
+                'scales' => [
+                    'x' => [
+                        'type' => 'time',
+                        'time' => [
+                            'unit' => 'month'
+                        ],
+                        'min' => $start->format("Y-m-d"),
+                    ]
+                ],
+                'plugins' => [
+                    'title' => [
+                        'display' => true,
+                        'text' => 'Monthly User Registrations'
+                    ]
+                ]
+            ]);
+
+
+
+        return view("user.chart", compact("chart"));
+
     }
 }

@@ -11,6 +11,8 @@ class Article extends Model
 
     protected $connection = 'mysql';
 
+    //protected $fillable = ['name'];
+
     public function allI(){
         return $this->select('*')->get();
     }

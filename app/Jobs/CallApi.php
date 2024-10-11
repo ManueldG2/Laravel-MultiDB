@@ -26,7 +26,7 @@ class CallApi implements ShouldQueue
     public function handle()
     {
 
-        $api=Http::get('https://api.chucknorris.io/jokes/random');
+        $api=Http::retry(3)->timeout(20)->acceptJson()->get('https://api.chucknorris.io/jokes/random');
 
         $api->json();
 
@@ -40,6 +40,6 @@ class CallApi implements ShouldQueue
 
         //non so come passare i dati direttamente al controller credo sia meglio inviare i dati al DB
 
-        return $value;
+
     }
 }

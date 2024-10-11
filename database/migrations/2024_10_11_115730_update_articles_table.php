@@ -6,20 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
+
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::table('articles', function (Blueprint $table) {
 
-            // aggiungere data ora inserimento / prelievo quantita
-            $table->id();
-            $table->string('name');
-            $table->float('price',precision:2);
-            $table->timestamps();
+        $table->date('insert');
+        $table->date('taking');
+        $table->integer('amount')->default(0);
 
-        });
+    });
     }
 
     /**
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('article');
+        //
     }
 };

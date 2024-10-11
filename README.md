@@ -2,7 +2,7 @@
 
  Mobiletto-pop
 
-Progetto di Tirocinio alternativo fatto Iagica per Mobiletti in supermercati
+Progetto di Tirocinio alternativo fatto in Iagica per Mobiletti in supermercati
 
     prodotti prelevati/acquistati tipo quantità ora (insererimento, uscita)
 
@@ -51,3 +51,9 @@ per le eventuali richieste ad un server che richiedo dei dati in modo sporadico 
     $value = $api['value']; // recupero dati con chiave value 
 
     uso di queue o un'altro sistema per effettuare una chiamata all'api ogni x minuti
+
+    da fare 
+    aggiungere campi utili : prodotti prelevati/acquistati tipo quantità ora (insererimento, uscita)
+    esporre API con token Auth2.0
+    creare grafici https://icehouse-ventures.github.io/laravel-chartjs/
+    per usare 2 server in contemporanea dovrei usare il server locale per le modifiche ai prodotti che poi aggiornerò sul server esterno  
