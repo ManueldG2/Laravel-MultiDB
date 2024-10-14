@@ -11,6 +11,8 @@ use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
+
+use function Laravel\Prompts\alert;
 use function Laravel\Prompts\form;
 
 class ArticleController extends Controller
@@ -22,18 +24,13 @@ class ArticleController extends Controller
     {
         $article = new Article();
 
-
         $art = $article->allI();
 
         $values = new Values();
-
         $val = $values->setConnection('mysql')->allI();
-
-        dump($val);
-
         CallApi::dispatch();
 
-        return view('welcome',compact('art','val'));
+        return view('article.index',compact('art','val'));
     }
 
     /**
@@ -43,7 +40,7 @@ class ArticleController extends Controller
     {
 
 
-        return view('article.index');
+        return view('article.new');
     }
 
     /**
@@ -59,6 +56,14 @@ class ArticleController extends Controller
 
             dati statistici grafici chart.js andamento delle vendite e di tipo commerciale quanti prodotti nel mobiletto e quale è stato acquistato in che orario (data - giorno della settimana )
          */
+
+
+            $validated = $request->validate([
+                'name' => 'required|unique:article|between:2,40',
+                'amount' => 'min:1',
+                'position' => 'required|unique:article'
+            ]);
+
         $article = new Article();
 
         $article->name =$request->input('name');
@@ -69,7 +74,7 @@ class ArticleController extends Controller
         $article->amount = 0;
 
         $article->position = $request->input('position');
-
+        $article->setConnection('mysql');
         $article->save();
         dump($request);
         return redirect()->route('article.index');
@@ -82,7 +87,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view("article.show",[ 'article'=> $article]);
+        return view("article.show",[ 'article'=> $article])->with(['test'=>'abcdf']);
     }
 
     /**
@@ -90,15 +95,19 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+
         return view("article.update",[ 'article'=> $article]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Article $article)
-    {
+    public function update(Request $request, Article $article){
 
+        $validated = $request->validate([
+            'name' => 'required|unique:articles',
+            'position' => 'required|unique:articles'
+        ]);
 
         $article->name =$request->input('name');
         $article->price = $request->input('price');
@@ -119,7 +128,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->destroy($article->id);
+        alert("cancellato");
     }
 
     public function showChart()

@@ -1,5 +1,5 @@
 @if (Route::has('login'))
-                            <nav class="-mx-3 flex flex-1 justify-between">
+                            <nav class="-mx-3 flex  justify-between">
                                 <x-application-logo class="block h-12 w-auto" />
                                 @auth
                                     <a

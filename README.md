@@ -58,4 +58,5 @@ per le eventuali richieste ad un server che richiedo dei dati in modo sporadico 
     v creare grafici https://icehouse-ventures.github.io/laravel-chartjs/ aggiunta la libreria ma è da configurare
     sistermare i template 
     per usare 2 server in contemporanea dovrei usare il server locale per le modifiche ai prodotti che poi aggiornerò sul server esterno  
+    aggiungere al model fillable e validation e inoltre i messaggi in caso di aggiornamento / cancellazione errore o mancata validazione aggiungere old() dentro la form
 
