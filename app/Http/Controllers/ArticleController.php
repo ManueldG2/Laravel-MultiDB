@@ -64,7 +64,7 @@ class ArticleController extends Controller
         $article->name =$request->input('name');
         $article->price = $request->input('price');
 
-        $article->insert = Carbon::now();
+        $article->insert = $request->input('insert') ?? Carbon::now();
         $article->taking = Carbon::now();
         $article->amount = 0;
 
@@ -72,6 +72,7 @@ class ArticleController extends Controller
 
         $article->save();
         dump($request);
+        return redirect()->route('article.index');
         //ritorna a index aggiungere campi
 
     }
@@ -79,31 +80,44 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(article $article)
+    public function show(Article $article)
     {
-        //
+        return view("article.show",[ 'article'=> $article]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(article $article)
+    public function edit(Article $article)
     {
-        //
+        return view("article.update",[ 'article'=> $article]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, article $article)
+    public function update(Request $request, Article $article)
     {
-        //
+
+
+        $article->name =$request->input('name');
+        $article->price = $request->input('price');
+
+        $article->insert = $request->input('insert') /*?? Carbon::now()*/;
+        $article->taking = $request->input('taking') ?? Carbon::now();
+        $article->amount = $request->input('amount') ?? 0;
+
+        $article->position = $request->input('position');
+
+        $article->save();
+
+        return redirect()->route('article.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(article $article)
+    public function destroy(Article $article)
     {
         //
     }
@@ -116,7 +130,6 @@ class ArticleController extends Controller
         $period = CarbonPeriod::create($start, "1 month", $end);
 
         $usersPerMonth = collect($period)->map(function ($date) {
-
             $endDate = $date->copy()->endOfMonth();
 
             return [
@@ -125,13 +138,19 @@ class ArticleController extends Controller
             ];
         });
 
-        $data = $usersPerMonth->pluck("count")->toArray() ;
+        $data = $usersPerMonth->pluck("count")->toArray();
         $labels = $usersPerMonth->pluck("month")->toArray();
-        dump($usersPerMonth);
+
+        $labels[] = "2024-10-15";
+
+
+        $data[] = 5;
+
+        dump($data,$labels);
 
         $chart = Chartjs::build()
             ->name("UserRegistrationsChart")
-            ->type("line")
+            ->type("bar")
             ->size(["width" => 400, "height" => 200])
             ->labels($labels)
             ->datasets([
@@ -139,7 +158,7 @@ class ArticleController extends Controller
                     "label" => "User Registrations",
                     "backgroundColor" => "rgba(38, 185, 154, 0.31)",
                     "borderColor" => "rgba(38, 185, 154, 0.7)",
-                    "data" => $data
+                    "data" => $data = $data
                 ]
             ])
             ->options([
@@ -159,8 +178,6 @@ class ArticleController extends Controller
                     ]
                 ]
             ]);
-
-
 
         return view("user.chart", compact("chart"));
 

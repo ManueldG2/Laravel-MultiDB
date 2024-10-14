@@ -112,6 +112,9 @@
                                             <label for="price">price</label>
                                             <input type="text" name="price" id="price">
 
+                                            <label for="insert">inserimento</label>
+                                            <input type="date" name="insert" id="insert">
+
                                             <label for="position">position</label>
                                             <input type="text" name="position" id="position">
 
