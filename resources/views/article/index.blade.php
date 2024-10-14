@@ -113,7 +113,7 @@
                                             <input type="text" name="price" id="price">
 
                                             <label for="insert">inserimento</label>
-                                            <input type="date" name="insert" id="insert">
+                                            <input type="datetime-local" name="insert" id="insert">
 
                                             <label for="position">position</label>
                                             <input type="text" name="position" id="position">
@@ -128,6 +128,8 @@
                         </div>
 
                     </main>
+
+
 
                     <footer class="py-16 text-center text-sm text-black">
 

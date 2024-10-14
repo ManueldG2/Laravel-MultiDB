@@ -65,7 +65,7 @@ class ArticleController extends Controller
         $article->price = $request->input('price');
 
         $article->insert = $request->input('insert') ?? Carbon::now();
-        $article->taking = Carbon::now();
+        //$article->taking = Carbon::now();
         $article->amount = 0;
 
         $article->position = $request->input('position');
@@ -142,9 +142,10 @@ class ArticleController extends Controller
         $labels = $usersPerMonth->pluck("month")->toArray();
 
         $labels[] = "2024-10-15";
+        $labels[] = "2024-10-10";
 
+        $data =   $data + [1=>5,2=>2]  ;
 
-        $data[] = 5;
 
         dump($data,$labels);
 

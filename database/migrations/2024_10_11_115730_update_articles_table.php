@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
 
-        $table->date('insert');
-        $table->date('taking');
+        $table->dateTime('insert')->nullable();
+        $table->dateTime('taking')->nullable();
         $table->integer('amount')->default(0);
 
     });
