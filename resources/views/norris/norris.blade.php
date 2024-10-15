@@ -23,23 +23,18 @@
 
                                     <div class="pt-3 sm:pt-5 lg:pt-0">
 
-                                        <h2 class="text-xl font-semibold text-black">Api</h2>
+                                        <h2 class="text-xl font-semibold text-black">Chuck Norris</h2>
 
-                                            lista endpoint e come accedere con il token barer
-
-                                            <pre class="text-sm">curl http://localhost:8000/api/user    -H "Accept: application/json"   -H "Authorization: Bearer {token}"</pre>
-
-                                            es.: <pre class="text-sm">curl http://localhost:8000/api/user    -H "Accept: application/json"   -H "Authorization: Bearer aaaaaaaaaaAAAAAAAAAAAAAA222222222222244444444444"</pre>
-
-                                            risposta es.: <pre class="text-sm/[8px] text-pretty  leading-relaxed">{"id":1,"name":"user","email":"user@email.it","email_verified_at":null,"current_team_id":null,"profile_photo_path":null,"created_at":"2024-10-14T08:01:49.000000Z","updated_at":"2024-10-14T08:01:49.000000Z","two_factor_confirmed_at":null,"profile_photo_url":"https:\/\/ui-avatars.com\/api\/?name=m&color=7F9CF5&background=EBF4FF"}</pre>
-
+                                            <div class="my-3 font-bold">
+                                                Tramite la realizzazione di una coda (queue) recupero i dati da un server esterno tramite API  e salvo i dati su database Mysql
+                                            </div>
                                             <ul>
 
-                                                <li>
-                                                    <a class="underline-offset-1 text-blue-300 " href="{{route('article.chart')}}">Grafici per articoli </a>
-                                                </li>
-                                                <li> <a class="underline-offset-1 text-blue-300 " href="{{route('norris')}}">Frasi su Chuck Norris </a></li>
-                                                <li> <a class="underline-offset-1 text-blue-300 " href="{{route('article.index')}}">Articoli solo la visualizzazione le rotte per la gestione saranno con l'autenticazione</a> </li>
+                                                @foreach ($val as $elem )
+                                                   <li>
+                                                        {{$elem->values}}
+                                                    </li>
+                                                @endforeach
 
                                             </ul>
 
@@ -50,6 +45,8 @@
                             </div>
 
                         </div>
+
+
 
                     </main>
 

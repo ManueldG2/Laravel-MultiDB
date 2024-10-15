@@ -26,11 +26,7 @@ class ArticleController extends Controller
 
         $art = $article->allI();
 
-        $values = new Values();
-        $val = $values->setConnection('mysql')->allI();
-        CallApi::dispatch();
-
-        return view('article.index',compact('art','val'));
+        return view('article.index',compact('art'));
     }
 
     /**
@@ -59,9 +55,9 @@ class ArticleController extends Controller
 
 
             $validated = $request->validate([
-                'name' => 'required|unique:article|between:2,40',
+                'name' => 'required|unique:articles|between:2,40',
                 'amount' => 'min:1',
-                'position' => 'required|unique:article'
+                'position' => 'required|unique:articles'
             ]);
 
         $article = new Article();

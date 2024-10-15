@@ -5,5 +5,6 @@
 </svg>-->
 
 
-<img src="{{ Vite::asset('resources/images/magazzino.jpg')}}" width="50px" >
+
+<a href="/"><img src="{{ Vite::asset('resources/images/magazzino.jpg')}}" width="50px" ></a>
 
