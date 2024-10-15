@@ -48,16 +48,16 @@
                                             @dump(old('name'))
                                             @dump($article->name)
                                             <label for="name">name</label>
-                                            <input  class="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" class="@error('title') is-invalid @enderror" name="name" id="name"  value="{{old('name') ?? $article->name }}" >
+                                            <input  class="@error('name') ring-2 ring-red-500 ring-inset @enderror block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" name="name" id="name"  value="{{old('name') ?? $article->name }}" >
 
                                             <label for="price">price</label>
-                                            <input  class="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" name="price" id="price" value="{{$article->price}} ">
+                                            <input  class="@error('price') ring-2 ring-red-500 ring-inset @enderror block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" name="price" id="price" value="{{$article->price}} ">
 
                                             <label for="insert">inserimento</label>
-                                            <input  class="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="datetime-local" name="insert" id="insert" value="{{$article->insert}}">
+                                            <input  class="@error('insert') ring-2 ring-red-500 ring-inset @enderrorblock w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="datetime-local" name="insert" id="insert" value="{{$article->insert}}">
 
                                             <label for="position">position</label>
-                                            <input  class="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" name="position" id="position" value="{{$article->position}}">
+                                            <input  class="@error('position') ring-2 ring-red-500 ring-inset @enderrorblock w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" name="position" id="position" value="{{$article->position}}">
 
                                             <input class="mt-2 px-4 py-2 font-semibold text-sm bg-cyan-500 text-white rounded-lg shadow-sm" type="submit" value="invio">
                                         </form>
