@@ -103,8 +103,11 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article){
 
         $validated = $request->validate([
-            'name' => 'required|unique:articles',
-            'position' => 'required|unique:articles'
+            'name' => 'required|unique:articles|between:2,40',
+            'amount' => 'min:1',
+            'position' => 'required|unique:articles',
+            'price' => 'numeric',
+            'insert' => 'date'
         ]);
 
         $article->name =$request->input('name');
