@@ -9,11 +9,12 @@ use App\Models\Values;
 use App\Models\Article;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
+use function Laravel\Prompts\form;
+use function Laravel\Prompts\alert;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
-
-use function Laravel\Prompts\alert;
-use function Laravel\Prompts\form;
 
 class ArticleController extends Controller
 {
@@ -68,13 +69,14 @@ class ArticleController extends Controller
         $article->price = $request->input('price');
 
         $article->insert = $request->input('insert') ?? Carbon::now();
-        //$article->taking = Carbon::now();
-        $article->amount = 0;
+
+        $article->amount = $request->input('amount');
 
         $article->position = $request->input('position');
-        $article->setConnection('mysql');
+        $article->user = Auth::user()->email; // come funzionalità da aggiungere potrei creare una lista d'accessi con gli utenti che hanno operato sull'articolo
+        // dump( json_encode( Auth::user()) ); un'idea potrebbe essere di creare un Json di accessi
         $article->save();
-        dump($request);
+
         return redirect()->route('article.index');
         //ritorna a index aggiungere campi
 
@@ -85,7 +87,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view("article.show",[ 'article'=> $article])->with(['test'=>'abcdf']);
+        return view("article.show",[ 'article'=> $article]);
     }
 
     /**
@@ -104,20 +106,26 @@ class ArticleController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|unique:articles|between:2,40',
-            'amount' => 'min:1',
+            'amount' => 'numeric|min:1',
             'position' => 'required|unique:articles',
             'price' => 'numeric',
-            'insert' => 'date'
+            'insert' => 'date',
+
         ]);
 
         $article->name =$request->input('name');
+
         $article->price = $request->input('price');
 
-        $article->insert = $request->input('insert') /*?? Carbon::now()*/;
-        $article->taking = $request->input('taking') ?? Carbon::now();
-        $article->amount = $request->input('amount') ?? 0;
+        $article->insert = $request->input('insert') ?? Carbon::now(); // se riceve null inserisce la data attuale di norma c'è la validazione in blade
+
+        $article->taking = $request->input('taking') ; // metto la data al momento del ritiro prodotto - Carbon::now();
+
+        $article->amount = $request->input('amount') ?? 1;
 
         $article->position = $request->input('position');
+
+        $article->user = Auth::user()->email;
 
         $article->save();
 
@@ -136,38 +144,52 @@ class ArticleController extends Controller
     public function showChart()
     {
 
-        $start = Carbon::parse(User::min("created_at"));
-        $end = Carbon::now();
-        $period = CarbonPeriod::create($start, "1 month", $end);
+        //grafico numero di articoli per settimana
 
-        $usersPerMonth = collect($period)->map(function ($date) {
-            $endDate = $date->copy()->endOfMonth();
+        //altro grafico uscite/entrate???
+
+          /*
+        $start = Carbon::parse(User::min("created_at"));
+
+        $end = Carbon::now();
+        */
+
+        $article = new Article();
+
+        $article->setConnection('mysql');
+
+        $start = Carbon::parse( $article::min('created_at') );
+        $end = Carbon::now();
+
+        $period = CarbonPeriod::create($start, "1 week", $end);
+
+        $articlePerMonth = collect($period)->map(function ($date) {
+
+            $endDate = $date->copy()->endOfWeek();
+
+            $article = new Article();
+
+            $article->setConnection('mysql');
+
+            $dates = ($article::where("created_at","<=",$endDate)->get());
 
             return [
-                "count" => User::where("created_at", "<=", $endDate)->count(),
-                "month" => $endDate->format("Y-m-d")
+                "count" => $article::where("created_at", "<=", $endDate)->count(),
+                "month" => $endDate
             ];
         });
 
-        $data = $usersPerMonth->pluck("count")->toArray();
-        $labels = $usersPerMonth->pluck("month")->toArray();
-
-        $labels[] = "2024-10-15";
-        $labels[] = "2024-10-10";
-
-        $data =   $data + [1=>5,2=>2]  ;
-
-
-        dump($data,$labels);
+        $data = $articlePerMonth->pluck("count")->toArray();
+        $labels = $articlePerMonth->pluck("month")->toArray();
 
         $chart = Chartjs::build()
-            ->name("UserRegistrationsChart")
-            ->type("bar")
-            ->size(["width" => 400, "height" => 200])
+            ->name("Prodotti ")
+            ->type("line")
+            ->size(["width" => 600, "height" => 300])
             ->labels($labels)
             ->datasets([
                 [
-                    "label" => "User Registrations",
+                    "label" => "Prodotti inseriti",
                     "backgroundColor" => "rgba(38, 185, 154, 0.31)",
                     "borderColor" => "rgba(38, 185, 154, 0.7)",
                     "data" => $data = $data
@@ -178,7 +200,7 @@ class ArticleController extends Controller
                     'x' => [
                         'type' => 'time',
                         'time' => [
-                            'unit' => 'month'
+                            'unit' => 'week'
                         ],
                         'min' => $start->format("Y-m-d"),
                     ]
@@ -186,7 +208,7 @@ class ArticleController extends Controller
                 'plugins' => [
                     'title' => [
                         'display' => true,
-                        'text' => 'Monthly User Registrations'
+                        'text' => 'Inserimenti settimanali'
                     ]
                 ]
             ]);

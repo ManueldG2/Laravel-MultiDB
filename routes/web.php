@@ -9,7 +9,7 @@ use App\Http\Controllers\ArticleController;
 //welcome
 Route::get('/', function(){
     return view('welcome');
-}) ;
+})->name('home') ;
 
 //articoli senza autenticazione
 Route::get('/article/chart', [ArticleController::class,'showChart'])->name('article.chart');

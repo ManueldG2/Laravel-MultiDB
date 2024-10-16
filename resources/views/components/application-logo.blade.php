@@ -6,5 +6,5 @@
 
 
 
-<a href="/"><img src="{{ Vite::asset('resources/images/magazzino.jpg')}}" width="50px" ></a>
+<a href="/"><img src="{{ Vite::asset('resources/images/magazzino.jpg')}}" width="50px" > </a>
 

@@ -14,16 +14,13 @@
 
                     <main >
 
-                        <div
-
-                                class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10"
-                            >
+                        <div class="flex justify-center gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10">
 
 
-                                <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black">nuovo articolo</h2>
+                                <div class=" pt-3 sm:pt-5">
+                                    <h2 class="text-xl font-semibold text-center text-black">Articoli</h2>
 
-                                    <p class="mt-4 text-sm/relaxed">
+
 
                                         <ul>
                                             {{-- visualizzo nome posizione e magari show edit delete --}}
@@ -32,37 +29,38 @@
                                                     <ul class="border border-emerald-400 m-3 p-1 rounded">
                                                         <li> <span class="font-bold">articolo</span>: {{$elem->name}}</li>
                                                         <li> <span class="font-bold">posizione</span>: {{$elem->position}}</li>
-
-                                                        {{--
-
-                                                            <li> <span class="font-bold" >prezzo</span>: {{$elem->price}}</li>
-                                                            <li> <span class="font-bold">quantità</span>: {{$elem->amount}}</li>
-
-
-                                                        --}}
-
                                                         <li>
 
-                                                            <a class="px-4 py-2 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" href="{{route('article.show',$elem->id)}}">show</a>
+                                                            <a class="px-4 py-2 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" href="{{route('article.show', $elem->id)}}">apri</a>
 
-                                                            <a class="px-4 py-1.5 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" href="{{route('article.edit',$elem->id)}}">edit</a>
-                                                            <form class="inline-block" method="POST" action="{{route("article.destroy",$elem->id)}}">
-                                                                @method("DELETE")
-                                                                @csrf
+                                                            @auth
+                                                                <a class="px-4 py-1.5 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" href="{{route('article.edit', $elem->id)}}">modifica</a>
+                                                            @endauth
 
-                                                                <input class="px-4 py-1.5 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" type="submit" value="delete">
-                                                            </form>
+                                                            @auth
+
+                                                                <form class="inline-block" method="POST" action="{{route("article.destroy", $elem->id)}}">
+
+                                                                    @method("DELETE")
+                                                                    @csrf
+
+                                                                    <input class="px-4 py-1.5 text-right font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" type="submit" value="cancella">
+
+                                                                </form>
+
+                                                            @endauth
+
                                                          </li>
 
                                                     </ul>
                                                 </li>
                                             @endforeach
 
+                                            <a class="px-4 py-1.5 font-semibold text-right text-sm bg-cyan-500 text-white rounded-full shadow-sm" href="{{route('article.create')}}"> nuovo articolo </a>
                                         </ul>
 
-                                    </p>
 
-                                    <a class="px-4 py-1.5 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" href="{{route('article.create')}}"> new article </a>
+
                                 </div>
                         </div>
 

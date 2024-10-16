@@ -52,12 +52,19 @@ per le eventuali richieste ad un server che richiedo dei dati in modo sporadico 
 
     uso di queue o un'altro sistema per effettuare una chiamata all'api ogni x minuti
 
-    da fare 
+    da fare:
+     - il progetto può essere ampliato anche da altre tabelle relazionali e funzionalità ma per ora do precedenza a come usare più database acquisizione dati da fonti esterne autenticazione Auth0 uso di code (queue)
+  
      - v aggiungere campi utili : prodotti prelevati/inseriti  quantità ora (inserimento, uscita) fatta da controllare
+     
      - esporre API con token Auth2.0 
+     
      - v creare grafici https://icehouse-ventures.github.io/laravel-chartjs/ aggiunta la libreria configurata ora da vedere quali dati passare
+     
      - sistermare i template per article fatti controllare il resto 
-     - per usare 2 server in contemporanea dovrei usare il server locale per le modifiche ai prodotti che poi aggiornerò sul server esterno   
+     
+     - per usare 2 server in contemporanea dovrei usare il server locale per le modifiche ai prodotti che poi aggiornerò sul server esterno  lo ritengo poco funzionale in questo caso 
+     
      - v da finire e CORREGGERE aggiungere al model fillable e validation e inoltre i messaggi in caso di aggiornamento / cancellazione errore o mancata validazione aggiungere old() dentro la form
 
     

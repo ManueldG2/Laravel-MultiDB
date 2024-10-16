@@ -68,13 +68,26 @@
                                                     <label for="price">price</label>
                                                     <input class=" @error('price')
                                                         ring-2 ring-red-500 ring-inset
-                                                    @enderror block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" class="@error('price') is-invalid @enderror" name="price" id="price" value="{{old('price')}}">
+                                                    @enderror block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="number" step="0.01" class="@error('price') is-invalid @enderror" name="price" id="price" value="{{old('price')}}">
                                                 </li>
+
                                                 <li>
                                                     <label for="insert">inserimento</label>
-                                                    <input class="@error('insert')
+                                                    <input class="
+                                                    @error('insert')
                                                         ring-2 ring-red-500 ring-inset
-                                                    @enderror block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="datetime-local" class="@error('insert') is-invalid @enderror" name="insert" id="insert" value="{{old('insert')}}></li>
+                                                    @enderror block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="datetime-local" class="@error('insert') is-invalid @enderror" name="insert" id="insert" value="{{old('insert')}}" >
+                                                </li>
+
+                                                <li>
+                                                    <label for="taking">prelievo</label>
+                                                    <input class="
+                                                    @error('taking')
+                                                        ring-2 ring-red-500 ring-inset
+                                                    @enderror block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="datetime-local" class="@error('taking') is-invalid @enderror" name="taking" id="taking" value="{{old('taking')}}" >
+                                                </li>
+
+
                                                 <li>
                                                     <label for="position">position</label>
                                                     <input class="@error('position')
@@ -85,7 +98,7 @@
                                                     <label for="amount">quantità</label>
                                                     <input class="@error('amount')
                                                         ring-2 ring-red-500 ring-inset
-                                                    @enderror block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" class="@error('amount') is-invalid @enderror" name="amount" id="amount" value="{{old('amount')}}">
+                                                    @enderror block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="number" class="@error('amount') is-invalid @enderror" name="amount" id="amount" value="{{old('amount')}}">
                                                 </li>
                                                 <li>
                                                     <input class="px-4 py-2 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" type="submit" value="invio">
