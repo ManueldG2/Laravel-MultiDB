@@ -27,21 +27,15 @@ class ApiArticleController extends Controller
     public function store(Request $request)
     {
         $article = new Article();
-        dump($request);
-        $article->name =$request->input('name');
-        $article->price = $request->input('price');
+        dump($request->all()[0]['name']);
+        // curl -X POST http://localhost:8000/api/articles  -H "Content-Type: application/json" -d "[{\"name\":\"test1\",\"price\":5,\"insert\":\"2024-10-16 20:00:00\",\"taking\":null,\"amount\":3,\"position\":\"a2\",\"user\":\"mdg@email.it\"}]" > out.html
 
-        $article->insert = $request->input('insert') ?? Carbon::now();
+        $article->setConnection('mysql');
 
-        $article->amount = $request->input('amount');
+        $art = $article::create($request->all());
 
-        $article->position = $request->input('position');
 
-        $article->user = "xxx";
-
-        $article->save();
-
-        return response('salvato',200);
+        return response($art,201);
     }
 
     /**
