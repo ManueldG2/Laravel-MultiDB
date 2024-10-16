@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+//https://dev.to/rohitsondigala/creating-a-restful-api-in-laravel-a-comprehensive-guide-27oi esempio api
 class ApiArticleController extends Controller
 {
     /**
