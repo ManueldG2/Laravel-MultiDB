@@ -17,4 +17,4 @@ Route::apiResource('articles', ArticleController::class)->only([
 ])->middleware('auth:sanctum');
 */
 
-Route::apiResource('/articles',ApiArticleController::class,['index','store','destroy']);
+Route::apiResource('articles',ApiArticleController::class)->middleware('auth:sanctum');
