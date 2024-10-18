@@ -22,7 +22,7 @@
 
 
 
-                                        <ul>
+                                        <ul class="flex flex-wrap">
                                             {{-- visualizzo nome posizione e magari show edit delete --}}
                                             @foreach ($art as $elem)
                                                <li>
@@ -56,8 +56,8 @@
                                                 </li>
                                             @endforeach
 
-                                            <a class="px-4 py-1.5 font-semibold text-right text-sm bg-cyan-500 text-white rounded-full shadow-sm" href="{{route('article.create')}}"> nuovo articolo </a>
                                         </ul>
+                                            <a class="px-4 py-1.5 font-semibold text-right text-sm bg-cyan-500 text-white rounded-full shadow-sm" href="{{route('article.create')}}"> nuovo articolo </a>
 
 
 

@@ -17,7 +17,7 @@ class CallApi implements ShouldQueue
      */
     public function __construct()
     {
-        //
+        $this->handle();
     }
 
     /**
@@ -26,7 +26,7 @@ class CallApi implements ShouldQueue
     public function handle()
     {
 
-        $api=Http::retry(3)->timeout(20)->acceptJson()->get('https://api.chucknorris.io/jokes/random');
+        $api=Http::timeout(20)->acceptJson()->get('https://api.chucknorris.io/jokes/random');
 
         $api->json();
 

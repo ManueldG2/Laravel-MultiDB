@@ -12,7 +12,7 @@ class NorrisController extends Controller
 
         $values = new Values();
         $val = $values->setConnection('mysql')->allI();
-        CallApi::dispatch();
+
 
         return view('norris.norris',compact('val'));
     }

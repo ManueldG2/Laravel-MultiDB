@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'local'),
+    'default' => env('FILESYSTEM_DISK', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -72,6 +72,9 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+
+        public_path('storage/profile-photos') => storage_path('app/photos'),
     ],
+
 
 ];
