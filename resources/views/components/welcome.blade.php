@@ -20,7 +20,14 @@ es.:
 risposta es.:
 
 <pre>{"id":1,"name":"user","email":"user@email.it","email_verified_at":null,"current_team_id":null,"profile_photo_path":null,"created_at":"2024-10-14T08:01:49.000000Z","updated_at":"2024-10-14T08:01:49.000000Z","two_factor_confirmed_at":null,"profile_photo_url":"https:\/\/ui-avatars.com\/api\/?name=m&color=7F9CF5&background=EBF4FF"}</pre>
+endpoint disponibili:
+    <pre>(GET)/api/user: dettagli dell'utente corrente</pre>
+    <pre>(GET)/api/articles: lista articoli</pre>
+    <pre>(POST)/api/articles/ crea articolo</pre>
+    <pre>(PUT/PATCH)/api/articles/{id}: modifica articolo</pre>
+    <pre>(DELETE)/api/articles/{id}: cancella articolo</pre>
     </p>
 
 </div>
+
 

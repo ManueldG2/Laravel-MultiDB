@@ -24,12 +24,17 @@
                                     <div class="pt-3 sm:pt-5 lg:pt-0">
 
                                         <h2 class="text-xl font-semibold text-black">MultiDB</h2>
-                                            <ul>
 
+                                        <p>MultiDB gestisce una serie di articoli che dovrebbero essere posizionati dentro dei mobiletti si possono usare sia le pagine html ma anche le API esposte tramite l'autenticazione Oauth2 nella dashboard che compare una volta registrati spiega come andrebbero utilizzte</b>
+
+                                        <p>la pagina dei grafici indica la quantità degli articoli settimana in settimana</p>
+
+                                        <p>infine per provare a reperire i dati da fonte esterna c'è la pagina dedicata alle frasi su Chuck Norris una volta letti li salva su Database e che quindi posso accederci quando ne ho bisogno.</p>
+                                            <ul>
                                                 <li>
                                                     <a class="underline-offset-1 text-blue-300 " href="{{route('article.chart')}}">Grafici per articoli </a>
                                                 </li>
-                                                <li> <a class="underline-offset-1 text-blue-300 " href="{{route('norris')}}">Frasi su Chuck Norris </a></li>
+                                                <li> <a class="underline-offset-1 text-blue-300 " href="{{route('norris')}}">Frasi su Chuck Norris prelevati da un server esterno</a></li>
                                                 <li> <a class="underline-offset-1 text-blue-300 " href="{{route('article.index')}}">Articoli solo la visualizzazione le rotte per la gestione saranno con l'autenticazione</a> </li>
 
                                             </ul>
