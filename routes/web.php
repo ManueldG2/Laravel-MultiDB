@@ -16,7 +16,6 @@ Route::get('/', function(){
 //articoli senza autenticazione
 Route::get('/article/chart', [ArticleController::class,'showChart'])->name('article.chart');
 
-
 //autenticazione
 Route::middleware([
     'auth:sanctum',
@@ -39,8 +38,4 @@ Route::resource('article', ArticleController::class)->except([
 Route::get('/ext/norris', [NorrisController::class,'read'])->name('norris');
 
 
-
- /*Route::resource('photos', PhotoController::class)->only([
-    'index', 'show'
-]); */
 
