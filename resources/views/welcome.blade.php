@@ -25,20 +25,29 @@
 
                                         <h2 class="text-xl font-semibold text-black">MultiDB</h2>
 
-                                        <p>MultiDB gestisce una serie di articoli che dovrebbero essere posizionati dentro dei mobiletti si possono usare sia le pagine html ma anche le API esposte tramite l'autenticazione Oauth2 nella dashboard che compare una volta registrati spiega come andrebbero utilizzte</b>
 
-                                        <p>la pagina dei grafici indica la quantità degli articoli settimana in settimana</p>
 
-                                        <p>infine per provare a reperire i dati da fonte esterna c'è la pagina dedicata alle frasi su Chuck Norris una volta letti li salva su Database e che quindi posso accederci quando ne ho bisogno.</p>
-                                            <ul>
-                                                <li>
-                                                    <a class="underline-offset-1 text-blue-300 " href="{{route('article.chart')}}">Grafici per articoli </a>
-                                                </li>
-                                                <li> <a class="underline-offset-1 text-blue-300 " href="{{route('norris')}}">Frasi su Chuck Norris prelevati da un server esterno</a></li>
-                                                <li> <a class="underline-offset-1 text-blue-300 " href="{{route('article.index')}}">Articoli solo la visualizzazione le rotte per la gestione saranno con l'autenticazione</a> </li>
-
-                                            </ul>
-
+                                        <ul>
+                                            <li class="m-5">
+                                                <p>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block stroke-current size-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                                    </svg>MultiDB gestisce una serie di articoli che dovrebbero essere posizionati dentro dei mobiletti si possono usare sia le pagine html ma anche le API esposte tramite autenticazione Oauth2: nella dashboard che compare una volta registrati spiega come andrebbero utilizzate</p>
+                                                 <a class="underline-offset-1 text-blue-300 " href="{{route('article.index')}}">Articoli</a>
+                                            </li>
+                                            <li class="m-5">
+                                                <p><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block stroke-current size-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                                    </svg>MultiDB gestisce una serie di articoli che dovrebbero essere posizionati dentro dei mobiletti si possono usare sia le pagine html ma anche le API esposte tramite autenticazione Oauth2: nella dashboard che compare una volta registrati spiega come andrebbero utilizzate</p>La pagina dei grafici indica la quantità degli articoli settimana per settimana</p>
+                                                <a class="underline-offset-1 text-blue-300 " href="{{route('article.chart')}}">Grafici per articoli </a>
+                                            </li>
+                                            <li class="m-5">
+                                                <p><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block stroke-current size-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                                    </svg>MultiDB gestisce una serie di articoli che dovrebbero essere posizionati dentro dei mobiletti si possono usare sia le pagine html ma anche le API esposte tramite autenticazione Oauth2: nella dashboard che compare una volta registrati spiega come andrebbero utilizzate</p>Per provare a reperire i dati da fonte esterna c'è la pagina dedicata alle frasi su Chuck Norris una volta scaricati li salva su Database MySQL e che quindi posso accederci quando ne ho bisogno.</p>
+                                                <a class="underline-offset-1 text-blue-300 " href="{{route('norris')}}">Frasi su Chuck Norris </a>
+                                            </li>
+                                        </ul>
                                     </div>
 
                                 </div>
