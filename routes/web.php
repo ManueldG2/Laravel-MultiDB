@@ -1,12 +1,15 @@
 <?php
 
+use App\Jobs\CallApi;
+use App\Models\Values;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schedule;
 use App\Http\Controllers\NorrisController;
 use App\Http\Controllers\ArticleController;
-use App\Jobs\CallApi;
+use Illuminate\Contracts\Foundation\Application;
 
-Schedule::job(new CallApi())->everyThirtyMinutes();
+//Schedule::job(new CallApi() )->everyThirtyMinutes();
+
 
 //welcome
 Route::get('/', function(){

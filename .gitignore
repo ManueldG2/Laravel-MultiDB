@@ -5,6 +5,10 @@ yarn-error.log
 
 /.vscode
 
+/storage/cache/
+/storage/sessions/
+/storage/framework/views/
+/storage/logs
 # Laravel 4 specific
 bootstrap/compiled.php
 app/storage/
