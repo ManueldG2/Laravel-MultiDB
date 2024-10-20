@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('values', function (Blueprint $table) {
 
             $table->id();
-            $table->string("values"); // potrei usare anche un campo blob o json oppure inserire altri campi
+            $table->text("values"); // potrei usare anche un campo blob o json oppure inserire altri campi
             $table->timestamps();
 
         });

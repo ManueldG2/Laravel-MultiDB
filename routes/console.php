@@ -10,4 +10,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 
-Schedule::job(new CallApi)->cron('0 * * * *');
+//Schedule::job(new CallApi)->cron('0 * * * *');
+Schedule::job(CallApi::class)->everyThirtySeconds();
