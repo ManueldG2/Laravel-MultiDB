@@ -11,3 +11,4 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 //https://redberry.international/laravel-cron-jobs-automated-task-scheduling/
+Schedule::job(CallApi::class)->everyThirtySeconds();

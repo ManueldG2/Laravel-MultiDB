@@ -17,7 +17,7 @@ class CallApi implements ShouldQueue
      */
     public function __construct()
     {
-        $this->handle();
+        //$this->handle();
     }
 
     /**
