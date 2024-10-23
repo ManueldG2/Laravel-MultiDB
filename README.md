@@ -126,7 +126,7 @@ HA(database:Mysql Values)-->C
 B-->CA(NorrisController)-->DA(View ext/norris)
 HB(database:Mysql Articles)-->CA
 
-B-->DB(View `welcome`)
+B-->DB(View welcome)
 
 A-->BA(Route API)-->CB(/user)-->E(auth:sanctum)-->F(Json: User)
 HD(DB:SqlLite)-->CB
