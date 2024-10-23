@@ -118,4 +118,22 @@ Recentemente è stata modificata la struttura dei file kernel.php che era un fil
 La validazione e gestione degli errori dati è semplice e personalizzabile viene gestita sia lato client che lato PHP.
 
 Conoscevo Laravel già dalla versione 8 mi ero studiato le funzionalità di base come creare dei Model, le migration, i controller e le viste (usando Blade, Vue, React) Laravel 11 non è cambiato molto ma alcune funzionalità avanzate non le conoscevo e quindi sono contento di aver realizzato questo nuovo progetto per migliorare la conoscenza di questo Framework.
+
+```mermaid
+graph TD
+A(app) --> B(route web)--> C(ArticleController)-->D(View `/article`)
+HA(database:Mysql Values)-->C
+B-->CA(NorrisController)-->DA(View `ext/norris`)
+HB(database:Mysql Articles)-->CA
+
+B-->DB(View `welcome`)
+
+A-->BA(Route API)-->CB(/user)-->E(auth:sanctum)-->F(Json: User)
+HD(DB:SqlLite)-->CB
+BA-->CC(ApiArticleController)-->EA(auth:sanctum)-->FA(Json: Article)
+HE(database:Mysql Articles)-->CC
+
+A-->BC(Route Console)-->CD(Schedule ogni 30 minuti)-->EB(Job: scarica dati da server esterno )-->HC(Database: mysql Values)
+
+```
   
