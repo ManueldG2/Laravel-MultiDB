@@ -121,9 +121,9 @@ Conoscevo Laravel già dalla versione 8 mi ero studiato le funzionalità di base
 
 ```mermaid
 graph TD
-A(app) --> B(route web)--> C(ArticleController)-->D(View `/article`)
+A(app) --> B(route web)--> C(ArticleController)-->D(View /article)
 HA(database:Mysql Values)-->C
-B-->CA(NorrisController)-->DA(View `ext/norris`)
+B-->CA(NorrisController)-->DA(View ext/norris)
 HB(database:Mysql Articles)-->CA
 
 B-->DB(View `welcome`)
